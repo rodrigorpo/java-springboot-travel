@@ -37,7 +37,7 @@
 - Option 2:
    - Run application with jar generated
 
-``
+```
   mvn clean install -DskipTests
   java -jar target/travel-0.0.1-SNAPSHOT.jar
-``
+```
