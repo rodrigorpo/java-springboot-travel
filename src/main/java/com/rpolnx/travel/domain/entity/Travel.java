@@ -36,10 +36,8 @@ public class Travel extends BaseEntity {
     }
 
     @ManyToOne
-    @JsonIgnore
     private User user;
 
     @ManyToOne
-    @JsonIgnore
     private Location location;
 }

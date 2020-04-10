@@ -31,6 +31,7 @@ public class Location extends BaseEntity {
     }
 
     public Location(Integer id) {
+        super();
         this.id = id;
     }
 }

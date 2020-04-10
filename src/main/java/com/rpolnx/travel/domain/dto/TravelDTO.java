@@ -17,21 +17,13 @@ import java.time.LocalDateTime;
 @Getter
 public class TravelDTO {
     private Integer id;
-    @NotNull
-    @NotBlank
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotNull @NotBlank @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocalDateTime scheduledTo;
-    @NotNull
-    @NotBlank
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotNull @NotBlank @JsonInclude(JsonInclude.Include.NON_NULL)
     private BigDecimal price;
-    @NotNull
-    @NotBlank
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotNull @NotBlank @JsonInclude(JsonInclude.Include.NON_NULL)
     private UserDTO user;
-    @NotNull
-    @NotBlank
-    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @NotNull @NotBlank @JsonInclude(JsonInclude.Include.NON_NULL)
     private LocationDTO location;
 
     public TravelDTO(Travel travel, UserDTO user, LocationDTO location) {

@@ -3,6 +3,7 @@ package com.rpolnx.travel.controller;
 import com.rpolnx.travel.domain.dto.LocationDTO;
 import com.rpolnx.travel.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,16 +30,19 @@ public class LocationController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public LocationDTO create(@RequestBody @Valid LocationDTO location) {
         return service.create(location);
     }
 
     @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void update(@PathVariable("id") Integer id, @RequestBody @Valid LocationDTO location) {
         service.update(id, location);
     }
 
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Integer id) {
         service.delete(id);
     }

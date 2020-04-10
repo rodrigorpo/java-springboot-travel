@@ -21,4 +21,10 @@ public class GlobalExceptionHandler {
     public NotFoundException handleNotFound(NotFoundException ex) {
         return ex;
     }
+
+    @ExceptionHandler(value = Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public NotFoundException handleException(NotFoundException ex) {
+        return ex;
+    }
 }
