@@ -12,14 +12,14 @@
 
 ## Table Relationship
 
-
+![Tables](https://github.com/rodrigorpo/java-springboot-travel/blob/master/src/main/resources/relation.png)
 
 ## How to run
 
 ### Configure envriomment
 
-``sh
-	docker-compose up
+``
+  docker-compose up
 ``
 
 ### Configure properties
@@ -37,7 +37,7 @@
 - Option 2:
    - Run application with jar generated
 
-``sh
+``
   mvn clean install -DskipTests
   java -jar target/travel-0.0.1-SNAPSHOT.jar
 ``
