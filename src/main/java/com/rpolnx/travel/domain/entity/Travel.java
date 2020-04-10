@@ -1,8 +1,13 @@
 package com.rpolnx.travel.domain.entity;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.With;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity(name = "travels")
@@ -15,7 +20,7 @@ public class Travel extends BaseEntity {
     @With
     private Integer id;
     private LocalDateTime scheduledTo;
-    private Double price;
+    private BigDecimal price;
 
     public Travel(LocalDateTime scheduledTo, User user, Location location) {
         this.scheduledTo = scheduledTo;
@@ -23,9 +28,18 @@ public class Travel extends BaseEntity {
         this.location = location;
     }
 
+    public Travel(LocalDateTime scheduledTo, BigDecimal price, User user, Location location) {
+        this.scheduledTo = scheduledTo;
+        this.price = price;
+        this.user = user;
+        this.location = location;
+    }
+
     @ManyToOne
+    @JsonIgnore
     private User user;
 
     @ManyToOne
+    @JsonIgnore
     private Location location;
 }

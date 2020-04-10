@@ -17,7 +17,7 @@ CREATE TABLE travels (
     id serial PRIMARY KEY,
     user_id int REFERENCES users(id),
     location_id int REFERENCES locations(id),
-    price MONEY NOT NULL,
+    price NUMERIC(18,2) NOT NULL,
     scheduled_to TIMESTAMP,
     created_at TIMESTAMP
 );

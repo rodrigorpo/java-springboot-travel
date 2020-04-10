@@ -1,35 +1,44 @@
 package com.rpolnx.travel.controller;
 
-import com.rpolnx.travel.domain.entity.Travel;
+import com.rpolnx.travel.domain.dto.TravelDTO;
+import com.rpolnx.travel.service.TravelService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("travels/users")
+@RequestMapping("travels")
 public class TravelController {
+    private final TravelService travelService;
 
-    @GetMapping
-    public List<Travel> getAll() {
-        return null;
+    @Autowired
+    public TravelController(TravelService travelService) {
+        this.travelService = travelService;
     }
 
-    @GetMapping("{userId}")
-    public Travel get(@PathVariable("userId") Long userId) {
-        return null;
+    @GetMapping
+    public List<TravelDTO> getAll() {
+        return travelService.getAll();
+    }
+
+    @GetMapping("{id}")
+    public TravelDTO get(@PathVariable("id") Integer id) {
+        return travelService.get(id);
     }
 
     @PostMapping
-    public Travel create(Travel travel) {
-        return null;
+    public TravelDTO create(@RequestBody TravelDTO dto) {
+        return travelService.create(dto);
     }
 
-    @PutMapping("{userId}")
-    public Travel update(@PathVariable("userId") Long userId, Travel travel) {
-        return null;
+    @PutMapping("{id}")
+    public void update(@PathVariable("id") Integer id, @RequestBody TravelDTO dto) {
+        travelService.update(id, dto);
     }
 
-    @DeleteMapping("{userId}")
-    public void delete(@PathVariable("userId") Long userId) {
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable("id") Integer id) {
+        travelService.delete(id);
     }
 }

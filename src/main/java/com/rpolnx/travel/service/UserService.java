@@ -10,6 +10,10 @@ public interface UserService {
 
     UserDTO get(Integer id);
 
+    User getInstance(Integer id);
+
+    User getOrCreateEntity(UserDTO userDTO);
+
     UserDTO create(UserDTO user);
 
     void update(Integer id, UserDTO user);

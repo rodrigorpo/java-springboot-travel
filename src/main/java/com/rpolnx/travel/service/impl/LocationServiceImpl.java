@@ -36,9 +36,24 @@ public class LocationServiceImpl implements LocationService {
     }
 
     @Override
+    public Location getInstance(Integer id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("LocationDTO Not Found"));
+    }
+
+    @Override
+    public Location getOrCreateEntity(LocationDTO dto) {
+        if (dto.isNewInstance()) {
+            return persistEntity(dto);
+        }
+
+        return repository.findById(dto.getId())
+                .orElseThrow(() -> new NotFoundException("UserDTO not found"));
+    }
+
+    @Override
     public LocationDTO create(LocationDTO dto) {
-        Location location = new Location(dto.getName(), dto.getImageUrl());
-        Location created = repository.save(location);
+        Location created = persistEntity(dto);
 
         return new LocationDTO(created.getId());
     }
@@ -56,6 +71,12 @@ public class LocationServiceImpl implements LocationService {
     public void delete(Integer id) {
         try {
             repository.deleteById(id);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+        }
+    }
+
+    private Location persistEntity(LocationDTO dto) {
+        Location location = new Location(dto.getName(), dto.getImageUrl());
+        return repository.save(location);
     }
 }

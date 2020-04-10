@@ -29,4 +29,8 @@ public class User extends BaseEntity {
         this.name = name;
         this.cpf = cpf;
     }
+
+    public User(Integer id) {
+        this.id = id;
+    }
 }

@@ -29,4 +29,8 @@ public class Location extends BaseEntity {
         this.name = name;
         this.imageUrl = imageUrl;
     }
+
+    public Location(Integer id) {
+        this.id = id;
+    }
 }

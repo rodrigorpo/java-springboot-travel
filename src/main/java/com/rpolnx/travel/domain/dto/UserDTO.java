@@ -1,5 +1,6 @@
 package com.rpolnx.travel.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.rpolnx.travel.domain.entity.User;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,5 +30,10 @@ public class UserDTO {
         this.id = user.getId();
         this.name = user.getName();
         this.cpf = user.getCpf();
+    }
+
+    @JsonIgnore
+    public boolean isNewInstance() {
+        return Objects.isNull(id);
     }
 }

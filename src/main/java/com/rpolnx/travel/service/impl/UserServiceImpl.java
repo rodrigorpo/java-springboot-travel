@@ -36,9 +36,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getInstance(Integer id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new NotFoundException("UserDTO not found"));
+    }
+
+    @Override
+    public User getOrCreateEntity(UserDTO userDTO) {
+        if (userDTO.isNewInstance()) {
+            return persistEntity(userDTO);
+        }
+
+        return repository.findById(userDTO.getId())
+                .orElseThrow(() -> new NotFoundException("UserDTO not found"));
+    }
+
+    @Override
     public UserDTO create(UserDTO dto) {
-        User user = new User(dto.getName(), dto.getCpf());
-        User created = repository.save(user);
+        User created = persistEntity(dto);
 
         return new UserDTO(created.getId());
     }
@@ -56,6 +71,12 @@ public class UserServiceImpl implements UserService {
     public void delete(Integer id) {
         try {
             repository.deleteById(id);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+        }
+    }
+
+    private User persistEntity(UserDTO dto) {
+        User user = new User(dto.getName(), dto.getCpf());
+        return repository.save(user);
     }
 }
